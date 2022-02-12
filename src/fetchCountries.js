@@ -1,14 +1,13 @@
-export default function fetchCountries(name){
+export { fetchCountries };
+    
+    function fetchCountries(name) {
 
-    const url = `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`;
+    const BASE_URL = `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`;
 
-    return fetch(url).then(p => {
-        if (!p.ok) {
-            throw new Error(p.status);
+    return fetch(BASE_URL ).then(response => {
+        if (!response.ok) {
+            throw new Error(response.status);
         }
-        return p.json();
+        return response.json();
     })
-        .then(data => {
-            return data;
-        });
 }
